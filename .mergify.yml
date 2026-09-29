@@ -7,5 +7,4 @@ queue_rules:
     queue_conditions: true
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 01:00-04:00
-
+      - schedule = 19:00-19:10
