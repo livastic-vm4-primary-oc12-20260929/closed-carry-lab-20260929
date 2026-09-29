@@ -8,5 +8,5 @@ queue_rules:
     merge_conditions:
       - check-success = vm4-closed-carry-gate
       - -draft
-      - schedule = 21:55-22:10
+      - schedule = 22:15-22:30
     merge_method: merge-batch
