@@ -3,6 +3,7 @@ merge_queue:
 queue_rules:
   - name: default
     batch_size: 2
+    batch_max_wait_time: 5 min
     queue_conditions: true
     merge_conditions:
       - check-success = vm4-closed-carry-gate
