@@ -1,0 +1,9 @@
+name: VM4 Closed Carry Gate
+on:
+  pull_request:
+jobs:
+  gate:
+    name: vm4-closed-carry-gate
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo vm4-closed-carry-gate
