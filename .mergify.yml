@@ -7,7 +7,7 @@ queue_rules:
     queue_conditions: true
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 12:20-12:35
+      - schedule = 13:05-13:20
     merge_method: merge
 priority_rules:
   - name: urgent checked-car interrupter
