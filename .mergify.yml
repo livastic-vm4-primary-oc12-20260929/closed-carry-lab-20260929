@@ -8,7 +8,7 @@ queue_rules:
       - "#commits-behind > 0"
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 22:05-22:20
+      - schedule = 22:40-22:55
     autoqueue: true
     merge_method: merge
   - name: default
@@ -17,7 +17,7 @@ queue_rules:
     queue_conditions: true
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 22:05-22:20
+      - schedule = 22:40-22:55
     merge_method: merge
 priority_rules:
   - name: urgent checked-car interrupter
