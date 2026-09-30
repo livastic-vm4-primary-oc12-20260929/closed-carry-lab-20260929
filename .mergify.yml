@@ -1,13 +1,23 @@
 merge_queue:
   max_parallel_checks: 1
 queue_rules:
+  - name: urgent-after-base-advance
+    batch_size: 1
+    queue_conditions:
+      - title = VM4 CHECKED CAR URGENT 20260930
+      - "#commits-behind > 0"
+    merge_conditions:
+      - check-success = vm4-closed-carry-gate
+      - schedule = 22:05-22:20
+    autoqueue: true
+    merge_method: merge
   - name: default
-    batch_size: 3
+    batch_size: 2
     batch_max_wait_time: 1 min
     queue_conditions: true
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 21:40-22:00
+      - schedule = 22:05-22:20
     merge_method: merge
 priority_rules:
   - name: urgent checked-car interrupter
