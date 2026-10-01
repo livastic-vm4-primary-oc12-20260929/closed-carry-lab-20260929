@@ -1,39 +1,11 @@
 merge_queue:
   max_parallel_checks: 1
 queue_rules:
-  - name: urgent-after-first-merge
-    batch_size: 1
-    queue_conditions:
-      - title = VM4 R15 CHECKED CAR URGENT 20261001
-      - "#commits-behind > 0"
+  - name: resolver-self-policy-baseline
+    batch_size: 2
+    batch_max_wait_time: 2 min
+    queue_conditions: true
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 02:45-03:05
-    autoqueue: true
-    merge_method: merge
-  - name: r15-normal-first
-    batch_size: 1
-    queue_conditions:
-      - title = VM4 R15 NORMAL FIRST 20261001
-    merge_conditions:
-      - check-success = vm4-closed-carry-gate
-      - schedule = 02:45-02:47
-    merge_method: merge
-  - name: r15-normal-second
-    batch_size: 1
-    queue_conditions:
-      - title = VM4 R15 NORMAL SECOND 20261001
-    merge_conditions:
-      - check-success = vm4-closed-carry-gate
-      - schedule = 02:50-03:05
-    merge_method: merge
-priority_rules:
-  - name: urgent checked-car interrupter
-    conditions:
-      - title = VM4 R15 CHECKED CAR URGENT 20261001
-    priority: high
-    allow_checks_interruption: true
-  - name: normal checked-car lane
-    conditions:
-      - title != VM4 R15 CHECKED CAR URGENT 20261001
-    priority: low
+      - schedule = 04:20-04:40
+    merge_method: merge-batch
