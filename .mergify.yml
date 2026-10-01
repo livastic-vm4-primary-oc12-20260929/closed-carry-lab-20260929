@@ -8,7 +8,7 @@ queue_rules:
       - "#commits-behind > 0"
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 01:40-02:00
+      - schedule = 02:45-03:05
     autoqueue: true
     merge_method: merge
   - name: r15-normal-first
@@ -17,7 +17,7 @@ queue_rules:
       - title = VM4 R15 NORMAL FIRST 20261001
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 01:40-01:42
+      - schedule = 02:45-02:47
     merge_method: merge
   - name: r15-normal-second
     batch_size: 1
@@ -25,7 +25,7 @@ queue_rules:
       - title = VM4 R15 NORMAL SECOND 20261001
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 01:45-02:00
+      - schedule = 02:50-03:05
     merge_method: merge
 priority_rules:
   - name: urgent checked-car interrupter

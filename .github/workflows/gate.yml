@@ -6,4 +6,12 @@ jobs:
     name: vm4-closed-carry-gate
     runs-on: ubuntu-latest
     steps:
-      - run: echo vm4-closed-carry-gate
+      - uses: actions/checkout@v4
+      - name: R15 rebuilt-normal discriminator
+        shell: bash
+        run: |
+          if [[ -f r15-urgent-marker.txt && -f r15-normal-second.txt ]]; then
+            echo "R15 fresh rebuild sees urgent marker and normal-second together"
+            exit 1
+          fi
+          echo vm4-closed-carry-gate
