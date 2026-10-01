@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: R17 post-interruption base discriminator
+      - name: R23 isolated to serial combined-state discriminator
         shell: bash
         run: |
-          if [[ -f r18-base-poison.txt && -f r17-strict-marker.txt ]]; then
-            echo "R18 fresh rebuild sentinel: sees base poison and strict marker together"
-            exit 17
+          if [[ -f r23-isolated-a.txt && -f r23-isolated-b.txt ]]; then
+            echo "R23 combined-state sentinel: A+B must be rechecked after isolated to serial mode switch"
+            exit 23
           fi
           echo vm4-closed-carry-gate
