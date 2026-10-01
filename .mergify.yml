@@ -1,11 +1,21 @@
 merge_queue:
-  max_parallel_checks: 1
+  max_parallel_checks: 2
+  skip_intermediate_results: true
 queue_rules:
-  - name: resolver-self-policy-baseline
-    batch_size: 2
-    batch_max_wait_time: 2 min
-    queue_conditions: true
+  - name: r16-strict
+    batch_size: 1
+    batch_max_wait_time: 30 sec
+    queue_conditions:
+      - title = VM4 R15 NORMAL SECOND 20261001
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 04:20-04:40
-    merge_method: merge-batch
+      - schedule = 09:40-10:10
+    merge_method: merge
+  - name: r16-weak
+    batch_size: 1
+    batch_max_wait_time: 30 sec
+    queue_conditions:
+      - title = VM4 conflict resolver self-policy B 20261001
+    merge_conditions:
+      - schedule = 09:40-10:10
+    merge_method: merge
