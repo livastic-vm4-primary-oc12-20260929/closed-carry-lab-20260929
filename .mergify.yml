@@ -67,7 +67,7 @@ queue_rules:
     queue_conditions:
       - title = VM4 R25 WEAK 20261002
     merge_conditions:
-      - schedule = 19:00-23:59
+      - schedule = 22:30-23:59
     merge_method: merge
 
   - name: r25-strict
@@ -77,7 +77,7 @@ queue_rules:
       - title = VM4 R25 STRICT 20261002
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 19:00-23:59
+      - schedule = 22:30-23:59
     merge_method: merge
 
 priority_rules:
