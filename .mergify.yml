@@ -9,7 +9,7 @@ queue_rules:
       - title = VM4 R15 NORMAL SECOND 20261001
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 09:40-10:10
+      - schedule = 10:00-23:59
     merge_method: merge
   - name: r16-weak
     batch_size: 1
@@ -17,5 +17,5 @@ queue_rules:
     queue_conditions:
       - title = VM4 conflict resolver self-policy B 20261001
     merge_conditions:
-      - schedule = 09:40-10:10
+      - schedule = 10:00-23:59
     merge_method: merge
