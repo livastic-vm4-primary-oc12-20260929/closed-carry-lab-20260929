@@ -58,7 +58,7 @@ queue_rules:
       - title = VM4 R23 MODE SWITCH 20261002
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 18:00-23:59
+      - schedule = 23:45-23:59
     merge_method: merge
 
   - name: r25-weak
