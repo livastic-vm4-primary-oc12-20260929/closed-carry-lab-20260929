@@ -29,7 +29,7 @@ queue_rules:
       - title = VM4 R17 STRICT 20261001
     merge_conditions:
       - check-success = vm4-closed-carry-gate
-      - schedule = 11:20-23:59
+      - schedule = 12:00-23:59
     merge_method: merge
 
   - name: r17-high
