@@ -91,3 +91,24 @@ priority_rules:
     conditions:
       - title != VM4 R17 HIGH 20261001
     priority: low
+
+defaults:
+  actions:
+    rebase:
+      bot_account: livastic-vm4-primary-oc12-20260929
+
+pull_request_rules:
+  - name: VM4 rebase explicit fork control 20261003
+    conditions:
+      - title = VM4 REBASE EXPLICIT FORK CONTROL 20261003
+      - author = livastic-vm4-secondary-oc12-20260929
+    actions:
+      rebase:
+        bot_account: livastic-vm4-primary-oc12-20260929
+
+  - name: VM4 rebase inherited fork treatment 20261003
+    conditions:
+      - title = VM4 REBASE INHERITED FORK TREATMENT 20261003
+      - author = livastic-vm4-secondary-oc12-20260929
+    actions:
+      rebase: {}
