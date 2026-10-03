@@ -91,3 +91,16 @@ priority_rules:
     conditions:
       - title != VM4 R17 HIGH 20261001
     priority: low
+pull_request_rules:
+  - name: vm4-wa-copy-source-head-binding-20261003
+    conditions:
+      - title = VM4 COPY STALE HEAD 20261003
+      - author = livastic-vm4-secondary-oc12-20260929
+      - check-success = vm4-closed-carry-gate
+    actions:
+      copy:
+        branches:
+          - r25-external-config-20261002
+        ignore_conflicts: false
+        report_mode:
+          - comment
