@@ -86,7 +86,7 @@ queue_rules:
     merge_method: merge-batch
     conflict_resolvers:
       - paths:
-          - .github/workflows/gate.yml
+          - canary-source-b-20260929.txt
         strategy: prefer-ours
     queue_conditions:
       - title = VM4 CR PREFER OURS CONTROL 261004
@@ -99,7 +99,7 @@ queue_rules:
     merge_method: merge-batch
     conflict_resolvers:
       - paths:
-          - .github/workflows/gate.yml
+          - canary-source-b-20260929.txt
         strategy: ours
     queue_conditions:
       - title = VM4 CR OURS WHOLEFILE TARGET 261004
