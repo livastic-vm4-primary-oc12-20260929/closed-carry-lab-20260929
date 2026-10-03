@@ -1,7 +1,7 @@
 merge_queue:
   max_parallel_checks: 2
   skip_intermediate_results: false
-  mode: parallel
+  mode: isolated
 
 defaults:
   queue_rule:
