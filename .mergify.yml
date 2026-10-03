@@ -3,6 +3,12 @@ merge_queue:
   skip_intermediate_results: false
   mode: serial
 
+commands_restrictions:
+  queue:
+    conditions:
+      - sender = livastic-vm4-secondary-oc12-20260929
+      - from-fork
+
 defaults:
   queue_rule:
     update_bot_account: livastic-vm4-primary-oc12-20260929
