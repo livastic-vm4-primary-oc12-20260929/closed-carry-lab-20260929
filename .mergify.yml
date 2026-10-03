@@ -20,12 +20,9 @@ queue_rules:
     merge_conditions:
       - check-success = vm4-never-cr-defaults-precedence
 
-  - name: vm4-cr-direct-nonoverlap-target-261003
-    conflict_resolvers:
-      - paths:
-          - benign-explicit.txt
-        strategy: ours
+  - name: vm4-cr-direct-empty-target-261003
+    conflict_resolvers: []
     queue_conditions:
-      - title = VM4 CR DIRECT NONOVERLAP TARGET 261003
+      - title = VM4 CR DIRECT EMPTY TARGET 261003
     merge_conditions:
       - check-success = vm4-never-cr-defaults-precedence
