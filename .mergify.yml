@@ -1,93 +1,28 @@
 merge_queue:
-  max_parallel_checks: 2
+  max_parallel_checks: 1
   skip_intermediate_results: false
-  mode: isolated
+  mode: serial
+
+defaults:
+  queue_rule:
+    update_bot_account: livastic-vm4-primary-oc12-20260929
 
 queue_rules:
-  - name: r16-strict
+  - name: vm4-fork-rebase-explicit-control-20261003
     batch_size: 1
-    batch_max_wait_time: 30 sec
     queue_conditions:
-      - title = VM4 R15 NORMAL SECOND 20261001
+      - title = VM4 FORK REBASE EXPLICIT 20261003
     merge_conditions:
-      - check-success = vm4-closed-carry-gate
-      - schedule = 10:00-23:59
+      - title = VM4 FORK REBASE EXPLICIT 20261003
+    update_method: rebase
+    update_bot_account: livastic-vm4-primary-oc12-20260929
     merge_method: merge
 
-  - name: r16-weak
+  - name: vm4-fork-rebase-inherited-treatment-20261003
     batch_size: 1
-    batch_max_wait_time: 30 sec
     queue_conditions:
-      - title = VM4 conflict resolver self-policy B 20261001
+      - title = VM4 FORK REBASE INHERITED 20261003
     merge_conditions:
-      - schedule = 10:00-23:59
+      - title = VM4 FORK REBASE INHERITED 20261003
+    update_method: rebase
     merge_method: merge
-
-  - name: r17-strict
-    batch_size: 1
-    batch_max_wait_time: 30 sec
-    queue_conditions:
-      - title = VM4 R17 STRICT 20261001
-    merge_conditions:
-      - check-success = vm4-closed-carry-gate
-      - schedule = 13:00-23:59
-    merge_method: merge
-
-  - name: r17-high
-    batch_size: 1
-    batch_max_wait_time: 30 sec
-    queue_conditions:
-      - title = VM4 R17 HIGH 20261001
-    merge_conditions:
-      - schedule = 00:00-23:59
-    merge_method: merge
-
-  - name: r17-weak
-    batch_size: 1
-    batch_max_wait_time: 30 sec
-    queue_conditions:
-      - title = VM4 R17 WEAK 20261001
-    merge_conditions:
-      - schedule = 00:00-23:59
-    merge_method: merge
-
-  - name: r23-mode-switch
-    batch_size: 1
-    batch_max_wait_time: 30 sec
-    queue_conditions:
-      - title = VM4 R23 MODE SWITCH 20261002
-    merge_conditions:
-      - check-success = vm4-closed-carry-gate
-      - schedule = 23:45-23:59
-    merge_method: merge
-
-  - name: r25-weak
-    batch_size: 1
-    batch_max_wait_time: 30 sec
-    queue_conditions:
-      - title = VM4 R25 WEAK 20261002
-    merge_conditions:
-      - schedule = 00:00-23:59
-    merge_method: merge
-
-  - name: r25-strict
-    batch_size: 1
-    batch_max_wait_time: 30 sec
-    queue_conditions:
-      - title = VM4 R25 STRICT 20261002
-    merge_conditions:
-      - check-success = vm4-closed-carry-gate
-      - schedule = 00:00-23:59
-    merge_method: merge
-
-priority_rules:
-  - name: r17 checked-car interrupter
-    conditions:
-      - title = VM4 R17 HIGH 20261001
-    priority: high
-    allow_checks_interruption: true
-
-  - name: r17 normal lane
-    conditions:
-      - title != VM4 R17 HIGH 20261001
-    priority: low
