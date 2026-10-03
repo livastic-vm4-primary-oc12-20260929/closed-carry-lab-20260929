@@ -80,6 +80,32 @@ queue_rules:
       - schedule = 00:00-23:59
     merge_method: merge
 
+  - name: vm4-cr-prefer-ours-control-261004
+    batch_size: 2
+    batch_max_wait_time: 2 sec
+    merge_method: merge-batch
+    conflict_resolvers:
+      - paths:
+          - .github/workflows/gate.yml
+        strategy: prefer-ours
+    queue_conditions:
+      - title = VM4 CR PREFER OURS CONTROL 261004
+    merge_conditions:
+      - check-success = vm4-never-cr-wholefile-semantics
+
+  - name: vm4-cr-ours-wholefile-target-261004
+    batch_size: 2
+    batch_max_wait_time: 2 sec
+    merge_method: merge-batch
+    conflict_resolvers:
+      - paths:
+          - .github/workflows/gate.yml
+        strategy: ours
+    queue_conditions:
+      - title = VM4 CR OURS WHOLEFILE TARGET 261004
+    merge_conditions:
+      - check-success = vm4-never-cr-wholefile-semantics
+
 priority_rules:
   - name: r17 checked-car interrupter
     conditions:
