@@ -4,18 +4,90 @@ merge_queue:
   mode: isolated
 
 queue_rules:
-  - name: vm4-cr-overlap-lastwins-target-261003
-    batch_size: 2
-    batch_max_wait_time: 2 sec
-    merge_method: merge-batch
-    conflict_resolvers:
-      - paths:
-          - sensitive-*
-        strategy: theirs
-      - paths:
-          - sensitive-default.txt
-        strategy: ours
+  - name: r16-strict
+    batch_size: 1
+    batch_max_wait_time: 30 sec
     queue_conditions:
-      - title = VM4 CR OVERLAP LASTWINS TARGET 261003
+      - title = VM4 R15 NORMAL SECOND 20261001
     merge_conditions:
-      - check-success = vm4-never-cr-overlap-order
+      - check-success = vm4-closed-carry-gate
+      - schedule = 10:00-23:59
+    merge_method: merge
+
+  - name: r16-weak
+    batch_size: 1
+    batch_max_wait_time: 30 sec
+    queue_conditions:
+      - title = VM4 conflict resolver self-policy B 20261001
+    merge_conditions:
+      - schedule = 10:00-23:59
+    merge_method: merge
+
+  - name: r17-strict
+    batch_size: 1
+    batch_max_wait_time: 30 sec
+    queue_conditions:
+      - title = VM4 R17 STRICT 20261001
+    merge_conditions:
+      - check-success = vm4-closed-carry-gate
+      - schedule = 13:00-23:59
+    merge_method: merge
+
+  - name: r17-high
+    batch_size: 1
+    batch_max_wait_time: 30 sec
+    queue_conditions:
+      - title = VM4 R17 HIGH 20261001
+    merge_conditions:
+      - schedule = 00:00-23:59
+    merge_method: merge
+
+  - name: r17-weak
+    batch_size: 1
+    batch_max_wait_time: 30 sec
+    queue_conditions:
+      - title = VM4 R17 WEAK 20261001
+    merge_conditions:
+      - schedule = 00:00-23:59
+    merge_method: merge
+
+  - name: r23-mode-switch
+    batch_size: 1
+    batch_max_wait_time: 30 sec
+    queue_conditions:
+      - title = VM4 R23 MODE SWITCH 20261002
+    merge_conditions:
+      - check-success = vm4-closed-carry-gate
+      - schedule = 23:45-23:59
+    merge_method: merge
+
+  - name: r25-weak
+    batch_size: 1
+    batch_max_wait_time: 30 sec
+    queue_conditions:
+      - title = VM4 R25 WEAK 20261002
+    merge_conditions:
+      - schedule = 00:00-23:59
+    merge_method: merge
+
+  - name: r25-strict
+    batch_size: 1
+    batch_max_wait_time: 30 sec
+    queue_conditions:
+      - title = VM4 R25 STRICT 20261002
+    merge_conditions:
+      - check-success = vm4-closed-carry-gate
+      - schedule = 00:00-23:59
+    merge_method: merge
+
+priority_rules:
+  - name: r17 checked-car interrupter
+    conditions:
+      - title = VM4 R17 HIGH 20261001
+    priority: high
+    allow_checks_interruption: true
+
+  - name: r17 normal lane
+    conditions:
+      - title != VM4 R17 HIGH 20261001
+    priority: low
