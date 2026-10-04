@@ -1,0 +1,47 @@
+name: VM4 PR Target AutoQ Poison V2
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: VM4 trusted v2 control mode
+        required: true
+        default: BASELINE
+        type: choice
+        options:
+          - BASELINE
+          - TRUSTED_FAIL
+  pull_request_target:
+    types: [opened, reopened, synchronize, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  test-insights-poison-v2:
+    runs-on: ubuntu-latest
+    env:
+      MERGIFY_TOKEN: ${{ secrets.MERGIFY_TOKEN }}
+      VM4_MODE: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.title || inputs.mode }}
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install current pytest-mergify
+        run: python -m pip install --disable-pip-version-check pytest pytest-mergify==2026.9.24.1
+      - name: Run trusted base-owned v2 test fixture
+        shell: bash
+        run: |
+          cat > test_vm4_prtarget_poison_v2_261004.py <<'PY'
+          import os
+          import pytest
+
+          MODE = os.environ.get("VM4_MODE", "")
+
+          def test_prtarget_poison_v2_261004():
+              if "VM4_POISON_V2_FLAKY" in MODE:
+                  pytest.fail("external PR poisoned main v2")
+              if MODE == "TRUSTED_FAIL":
+                  pytest.fail("trusted main v2 deterministic failure")
+          PY
+          python -m pytest -q test_vm4_prtarget_poison_v2_261004.py
