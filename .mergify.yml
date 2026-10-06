@@ -4,14 +4,14 @@ merge_queue:
   mode: isolated
 
 queue_rules:
-  - name: vm4-crjson-parent-child-261006
+  - name: vm4-crjson-delete-modify-261006
     batch_size: 2
     batch_max_wait_time: 30 sec
     queue_conditions:
       - base = vm4-crjson-parentbase-261006
-      - title = VM4 CRJSON PARENT CHILD 261006
+      - title = VM4 CRJSON DELETE MODIFY 261006
     merge_conditions:
-      - check-success = vm4-never-json-parentchild
+      - check-success = vm4-never-json-delete-modify
     merge_method: merge-batch
     conflict_resolvers:
       - paths:
