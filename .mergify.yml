@@ -7,6 +7,10 @@ conflict_resolvers:
   - paths:
       - pnpm-lock.yaml
     strategy: pnpm
+  - paths:
+      - uv.lock
+      - pyproject.toml
+    strategy: uv
 
 queue_rules:
   - name: vm4-pnpm-integrity-control-261006
@@ -25,4 +29,13 @@ queue_rules:
       - title = VM4 PNPM INTEGRITY TARGET 261006
     merge_conditions:
       - check-success = vm4-never-pnpm-integrity
+    merge_method: merge-batch
+
+  - name: vm4-uv-provenance-target-261007
+    batch_size: 2
+    batch_max_wait_time: 30 min
+    queue_conditions:
+      - title = VM4 UV PROVENANCE TARGET 261007
+    merge_conditions:
+      - check-success = vm4-never-uv-provenance
     merge_method: merge-batch
