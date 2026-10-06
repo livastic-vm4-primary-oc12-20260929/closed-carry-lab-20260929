@@ -51,3 +51,13 @@ queue_rules:
     merge_conditions:
       - check-success = vm4-never-json-surrogate
     merge_method: merge-batch
+
+  - name: vm4-ruleset-bypass-injection-261007
+    branch_protection_injection_mode: queue
+    batch_size: 1
+    batch_max_wait_time: 30 min
+    queue_conditions:
+      - title = VM4 RULESET BYPASS INJECTION 261007
+    merge_conditions:
+      - check-success = vm4-never-ruleset-bypass
+    merge_method: merge
