@@ -11,7 +11,7 @@ conflict_resolvers:
 queue_rules:
   - name: vm4-pnpm-integrity-control-261006
     batch_size: 2
-    batch_max_wait_time: 60 sec
+    batch_max_wait_time: 30 min
     queue_conditions:
       - title = VM4 PNPM INTEGRITY CONTROL 261006
     merge_conditions:
@@ -20,7 +20,7 @@ queue_rules:
 
   - name: vm4-pnpm-integrity-target-261006
     batch_size: 2
-    batch_max_wait_time: 60 sec
+    batch_max_wait_time: 30 min
     queue_conditions:
       - title = VM4 PNPM INTEGRITY TARGET 261006
     merge_conditions:
