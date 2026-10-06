@@ -1,20 +1,19 @@
-scopes:
-  source:
-    files:
-      protected-scope:
-        include: []
-
 merge_queue:
   max_parallel_checks: 1
   skip_intermediate_results: false
   mode: isolated
 
 queue_rules:
-  - name: vm4-emptyinclude-engine-gate-261006
-    batch_size: 1
+  - name: vm4-crjson-parent-child-261006
+    batch_size: 2
+    batch_max_wait_time: 30 sec
     queue_conditions:
-      - title = VM4 EMPTY INCLUDE ENGINE GATE 261006
-      - scope = protected-scope
+      - base = vm4-crjson-parentbase-261006
+      - title = VM4 CRJSON PARENT CHILD 261006
     merge_conditions:
-      - check-success = ci-gate
-    merge_method: merge
+      - check-success = vm4-never-json-parentchild
+    merge_method: merge-batch
+    conflict_resolvers:
+      - paths:
+          - vm4-json-parentchild-policy.json
+        strategy: json
