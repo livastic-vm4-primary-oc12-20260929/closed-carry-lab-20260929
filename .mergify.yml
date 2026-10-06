@@ -11,6 +11,9 @@ conflict_resolvers:
       - uv.lock
       - pyproject.toml
     strategy: uv
+  - paths:
+      - vm4-json-surrogate-policy.json
+    strategy: json
 
 queue_rules:
   - name: vm4-pnpm-integrity-control-261006
@@ -38,4 +41,13 @@ queue_rules:
       - title = VM4 UV PROVENANCE TARGET 261007
     merge_conditions:
       - check-success = vm4-never-uv-provenance
+    merge_method: merge-batch
+
+  - name: vm4-crjson-surrogate-target-261007
+    batch_size: 2
+    batch_max_wait_time: 30 min
+    queue_conditions:
+      - title = VM4 CRJSON SURROGATE TARGET 261007
+    merge_conditions:
+      - check-success = vm4-never-json-surrogate
     merge_method: merge-batch
