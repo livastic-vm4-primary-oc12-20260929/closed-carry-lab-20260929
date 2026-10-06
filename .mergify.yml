@@ -1,20 +1,20 @@
-scopes:
-  source:
-    files:
-      protected-scope:
-        include: []
-
 merge_queue:
   max_parallel_checks: 1
   skip_intermediate_results: false
   mode: isolated
 
+defaults:
+  queue_rule:
+    batch_size: 2
+    batch_max_wait_time: 2 sec
+    merge_method: merge
+
 queue_rules:
-  - name: vm4-emptyinclude-engine-gate-261006
-    batch_size: 1
+  - name: vm4-auto-inplace-defaults-batchsize-261006
     queue_conditions:
-      - title = VM4 EMPTY INCLUDE ENGINE GATE 261006
-      - scope = protected-scope
+      - title = VM4 CR OVERLAP LASTWINS TARGET 261003
+      - check-success = vm4-closed-carry-gate
     merge_conditions:
-      - check-success = vm4-never-emptyinclude-gate
+      - title = VM4 CR OVERLAP LASTWINS TARGET 261003
+      - check-success = vm4-closed-carry-gate
     merge_method: merge
