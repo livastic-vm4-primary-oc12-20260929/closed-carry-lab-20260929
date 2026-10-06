@@ -1,7 +1,8 @@
 scopes:
   source:
     files:
-      protected-scope: {}
+      protected-scope:
+        include: []
 
 merge_queue:
   max_parallel_checks: 1
