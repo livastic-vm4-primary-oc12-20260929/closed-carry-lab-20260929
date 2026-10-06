@@ -1,20 +1,20 @@
+scopes:
+  source:
+    files:
+      protected-scope:
+        include: []
+
 merge_queue:
   max_parallel_checks: 1
   skip_intermediate_results: false
   mode: isolated
 
-conflict_resolvers:
-  - paths:
-      - vm4-json-parentchild-policy.json
-    strategy: json
-
 queue_rules:
-  - name: vm4-crjson-delete-modify-261006
-    batch_size: 2
-    batch_max_wait_time: 30 sec
+  - name: vm4-emptyinclude-engine-gate-261006
+    batch_size: 1
     queue_conditions:
-      - base = vm4-crjson-parentbase-261006
-      - title = VM4 CRJSON DELETE MODIFY 261006
+      - title = VM4 EMPTY INCLUDE ENGINE GATE 261006
+      - scope = protected-scope
     merge_conditions:
-      - check-success = vm4-never-json-delete-modify
-    merge_method: merge-batch
+      - check-success = ci-gate
+    merge_method: merge
