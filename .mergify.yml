@@ -1,7 +1,7 @@
 merge_queue:
-  max_parallel_checks: 1
-  skip_intermediate_results: false
-  mode: isolated
+  max_parallel_checks: 2
+  skip_intermediate_results: true
+  mode: serial
 
 conflict_resolvers:
   - paths:
@@ -14,6 +14,9 @@ conflict_resolvers:
   - paths:
       - vm4-json-surrogate-policy.json
     strategy: json
+  - paths:
+      - vm4-skip-discard-policy.txt
+    strategy: theirs
 
 queue_rules:
   - name: vm4-pnpm-integrity-control-261006
@@ -60,4 +63,13 @@ queue_rules:
       - title = VM4 RULESET BYPASS INJECTION 261007
     merge_conditions:
       - check-success = vm4-never-ruleset-bypass
+    merge_method: merge
+
+  - name: vm4-skip-discard-target-261007
+    batch_size: 1
+    batch_max_wait_time: 30 min
+    queue_conditions:
+      - title = VM4 SKIP DISCARD TARGET 261007
+    merge_conditions:
+      - check-success = ordinary-script
     merge_method: merge
