@@ -1,3 +1,18 @@
+pull_request_rules:
+  - name: vm4-wa-copy-source-head-binding-20261008
+    conditions:
+      - title = VM4 COPY STALE HEAD 20261008
+      - author = livastic-vm4-secondary-oc12-20260929
+      - check-success = vm4-closed-carry-gate
+    actions:
+      copy:
+        branches:
+          - r25-external-config-20261002
+        ignore_conflicts: false
+        report_mode:
+          - check
+          - comment
+
 merge_queue:
   max_parallel_checks: 2
   skip_intermediate_results: true
