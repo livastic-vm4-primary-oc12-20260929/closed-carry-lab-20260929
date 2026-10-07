@@ -75,6 +75,7 @@ queue_rules:
     merge_method: merge-batch
 
   - name: vm4-json-protected-landing-261007
+    branch_protection_injection_mode: merge
     batch_size: 2
     batch_max_wait_time: 30 min
     queue_conditions:
