@@ -72,4 +72,4 @@ queue_rules:
       - title = VM4 SKIP DISCARD TARGET 261007
     merge_conditions:
       - check-success = ordinary-script
-    merge_method: merge
+    merge_method: merge-batch
