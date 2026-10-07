@@ -73,3 +73,12 @@ queue_rules:
     merge_conditions:
       - check-success = ordinary-script
     merge_method: merge-batch
+
+  - name: vm4-json-protected-landing-261007
+    batch_size: 2
+    batch_max_wait_time: 30 min
+    queue_conditions:
+      - title = VM4 JSON PROTECTED LANDING 261007
+    merge_conditions:
+      - check-success = vm4-json-authz-gate
+    merge_method: merge-batch
