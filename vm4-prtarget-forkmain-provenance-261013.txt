@@ -1,2 +1,0 @@
-VM4 controlled branch-provenance experiment, synthetic nonsecret canary.
-No executable code, no workflow or product configuration change.
